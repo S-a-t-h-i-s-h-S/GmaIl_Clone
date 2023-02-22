@@ -17,7 +17,57 @@ class _gmailState extends State<gmail> {
         title: Text('Primary'),
         actions: [Icon(Icons.search)],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 170.0,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: ExactAssetImage('images/7.jpeg'),
+                      fit: BoxFit.cover)),
+              child: Container(
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Colors.grey,
+                        backgroundImage: AssetImage('images/4.jpg'),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      child: Text(
+                        'Andy Brown',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      child: Text(
+                        'Andybrown@gmail.com',
+                        style: TextStyle(color: Colors.white70, fontSize: 12),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+                leading: Icon(Icons.inbox),
+                title: Text(
+                  'All Inboxes',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ))
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 189, 69, 32),
         onPressed: () {
@@ -25,60 +75,143 @@ class _gmailState extends State<gmail> {
         },
         child: Icon(Icons.edit),
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ListTileMethod(
+                title: 'Social',
+                subtitle: 'Google+',
+                idata: Icons.people,
+                icolor: Colors.blue,
+                msg: '1 New'),
+            Divider(
+              height: 0.1,
+            ),
+            ListTileMethod(
+                title: 'Promotions',
+                subtitle: 'Swiggy,Google Offers',
+                idata: Icons.more,
+                icolor: Colors.green,
+                msg: '5 New'),
+            Divider(
+              height: 0.1,
+            ),
+            ListTileMethod(
+                title: 'Updates',
+                subtitle: 'Google Play',
+                idata: Icons.info,
+                icolor: Colors.orange,
+                msg: '2 New'),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/2.jpg',
+                title: 'Periklis Nana',
+                subtitle: 'Pantone is a colour also the singular ',
+                time: '10:15 PM',
+                isunread: false),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/3.jpg',
+                title: 'Matthaios Grigorios',
+                subtitle: "I don't need a big house ",
+                time: 'Yesterday',
+                isunread: true),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/4.jpg',
+                title: 'Thekla Prokopis',
+                subtitle: "I never had a fear of heights ",
+                time: 'Mar 29',
+                isunread: true),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/5.jpeg',
+                title: 'Konstantinos Prokopios',
+                subtitle: "You know the Grammys are a joke ",
+                time: '2:00 AM',
+                isunread: true),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/6.jpeg',
+                title: 'Evangelos',
+                subtitle: 'A tagline for a car company that prides ',
+                time: 'Yesterday',
+                isunread: true),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/8.jpg',
+                title: 'Vasso Marika',
+                subtitle: 'We need more werkin and less twerkin ',
+                time: '5:00 PM',
+                isunread: false),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/9.jpeg',
+                title: 'Christina Valentina',
+                subtitle: "I'm in a band that does Metallica covers ",
+                time: '11:00 AM',
+                isunread: false),
+            Divider(
+              height: 0.1,
+            ),
+            inboxmethod(
+                url: 'images/10.jpg',
+                title: 'kariklis Nana',
+                subtitle: 'North America should be called Russia ',
+                time: 'Feb 11',
+                isunread: false),
+            Divider(
+              height: 0.1,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  ListTile inboxmethod(
+      {String? url,
+      String? title,
+      String? subtitle,
+      String? time,
+      bool? isunread}) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: Colors.grey,
+        backgroundImage: ExactAssetImage(url!),
+        radius: 20.0,
+      ),
+      title: Text(
+        title!,
+        style: TextStyle(
+            fontWeight: isunread! ? FontWeight.bold : FontWeight.normal),
+      ),
+      subtitle: Text(subtitle!),
+      trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          ListTileMethod(
-              title: 'Social',
-              subtitle: 'Google+',
-              idata: Icons.people,
-              icolor: Colors.blue,
-              msg: '1 New'),
-          Divider(
-            height: 0.1,
+          Text(
+            time!,
+            style: TextStyle(fontWeight: FontWeight.w500),
           ),
-          ListTileMethod(
-              title: 'Promotions',
-              subtitle: 'Swiggy,Google Offers',
-              idata: Icons.more,
-              icolor: Colors.green,
-              msg: '5 New'),
-          Divider(
-            height: 0.1,
+          Icon(
+            Icons.star_border,
           ),
-          ListTileMethod(
-              title: 'Updates',
-              subtitle: 'Google Play',
-              idata: Icons.info,
-              icolor: Colors.orange,
-              msg: '2 New'),
-          Divider(
-            height: 0.1,
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Colors.grey,
-              backgroundImage: ExactAssetImage('images/1.jpeg'),
-              radius: 20.0,
-            ),
-            title: Text('Andy Brown'),
-            subtitle: Text('Bring your parents to work day'),
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  '1.45 PM',
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-                Icon(
-                  Icons.star_border,
-                ),
-              ],
-            ),
-          ),
-          Divider(
-            height: 0.1,
-          )
         ],
       ),
     );
