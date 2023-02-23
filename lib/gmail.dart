@@ -18,6 +18,7 @@ class _gmailState extends State<gmail> {
         actions: [Icon(Icons.search)],
       ),
       drawer: Drawer(
+        backgroundColor: Colors.grey.shade200,
         child: Column(
           children: [
             Container(
@@ -59,12 +60,67 @@ class _gmailState extends State<gmail> {
                 ),
               ),
             ),
-            ListTile(
-                leading: Icon(Icons.inbox),
-                title: Text(
-                  'All Inboxes',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ))
+            DrawerListMethod(
+                idata: Icons.inbox,
+                msg: 'All Inboxes',
+                tail: '',
+                icolor: Colors.grey.shade200),
+            Divider(
+              height: 1.8,
+            ),
+            DrawerListMethod(
+                idata: Icons.people,
+                msg: 'Primary',
+                tail: '99+',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.more,
+                msg: 'Social',
+                tail: '2 New',
+                icolor: Colors.blue),
+            DrawerListMethod(
+                idata: Icons.star,
+                msg: 'Promotions',
+                tail: '',
+                icolor: Colors.grey.shade200),
+            Divider(
+              height: 1.8,
+            ),
+            DrawerListMethod(
+                idata: Icons.alarm,
+                msg: 'Starred',
+                tail: '2',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.play_arrow,
+                msg: 'Snoozed',
+                tail: '',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.mail_outline,
+                msg: 'Important',
+                tail: '99',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.bookmark,
+                msg: 'Sent',
+                tail: '9',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.insert_drive_file,
+                msg: 'Outbox',
+                tail: '',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.error,
+                msg: 'Spam',
+                tail: '23',
+                icolor: Colors.grey.shade200),
+            DrawerListMethod(
+                idata: Icons.settings,
+                msg: 'Settings',
+                tail: '',
+                icolor: Colors.grey.shade200),
           ],
         ),
       ),
@@ -181,6 +237,33 @@ class _gmailState extends State<gmail> {
         ),
       ),
     );
+  }
+
+  ListTile DrawerListMethod(
+      {IconData? idata, String? msg, String? tail, Color? icolor}) {
+    return ListTile(
+        leading: Icon(idata),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              msg!,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Container(
+              color: icolor,
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              child: Text(
+                tail!,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: icolor == Colors.grey.shade200
+                        ? Colors.black
+                        : Colors.white),
+              ),
+            )
+          ],
+        ));
   }
 
   ListTile inboxmethod(
